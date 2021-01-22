@@ -1,5 +1,4 @@
-
-      var h = 0,m = 0,s = 0; //initializing h,m,s as zero
+var h = 0,m = 0,s = 0; //initializing h,m,s as zero
       var tim;
       //initially pause and stop buttons are disabled
       document.getElementById("pause").disabled = true; 
@@ -18,6 +17,18 @@
           document.getElementById("start").disabled = true;
       }
       function start(){
+        //   H.innerHTML = h;
+        //   M.innerHTML = m;
+        //   S.innerHTML = s;
+          s++;
+          if(s==60){
+              m++;
+              s=0;
+          }
+          if(m==60){
+              h++;
+              m=0;
+          }
           if(h<=9){
             H.innerHTML = "0"+h;
           }
@@ -38,24 +49,12 @@
           else{
             S.innerHTML = s;
           }
-        //   H.innerHTML = h;
-        //   M.innerHTML = m;
-        //   S.innerHTML = s;
-          s++;
-          if(s==60){
-              m++;
-              s=0;
-          }
-          if(m==60){
-              h++;
-              m=0;
-          }
       }
 
       //storing text of pause button to change it
       var changePauseText = document.querySelector("#pause");
       function pause(){
-        clearInterval(tim);
+        clearInterval(window.tim);
         if (changePauseText.innerHTML === "pause") {
             changePauseText.innerHTML = "continue";
         } else {
@@ -70,7 +69,7 @@
         H.innerHTML = "0" + h;
         M.innerHTML = "0" + m;
         S.innerHTML = "0" + s;
-        clearInterval(tim);
+        clearInterval(window.tim);
         changePauseText.innerHTML = "pause";
         document.getElementById("start").disabled = false;
         document.getElementById("pause").disabled = true;
